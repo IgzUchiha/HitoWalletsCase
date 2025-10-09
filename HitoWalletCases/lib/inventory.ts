@@ -21,7 +21,7 @@ export const product: Product = {
   price: 49.99,
   priceEth: 0.025,
   stock: currentStock,
-  images: ["/wallet-case.jpg", "/wallet-case-2.jpg"],
+  images: ["/IMG_1878.jpg", "/IMG_1881.jpeg", "/IMG_1879.jpeg"],
   features: [
     "3D printed with premium filament",
     "RFID blocking technology",
