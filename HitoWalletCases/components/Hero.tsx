@@ -41,10 +41,10 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="pt-8 flex gap-8">
+            <div className="pt-8 flex gap-12">
               <div>
-                <div className="text-3xl font-bold text-indigo-600">{product.stock}</div>
-                <div className="text-sm text-gray-600">In Stock</div>
+                <div className="text-3xl font-bold text-indigo-600">100%</div>
+                <div className="text-sm text-gray-600">Handcrafted</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-indigo-600">3D</div>
@@ -62,7 +62,7 @@ export default function Hero() {
             <div className="shadow-2xl">
               <ImageCarousel
                 images={product.images}
-                alt="Premium Hito Wallet Case"
+                alt="Premium Web3 Wallet Case"
                 priority
               />
             </div>
@@ -81,7 +81,7 @@ export default function Hero() {
       <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            Why Choose Hito Cases?
+            Why Choose Web3Cases?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">

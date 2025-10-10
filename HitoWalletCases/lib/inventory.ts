@@ -16,12 +16,12 @@ let currentStock = 30;
 
 export const product: Product = {
   id: "wallet-case-001",
-  name: "Premium Hito Wallet Case",
+  name: "Premium Web3 Wallet Case",
   description: "3D printed wallet case with RFID protection and minimalist design. Perfect for everyday carry with space for cards, cash, and essentials.",
   price: 49.99,
   priceEth: 0.025,
   stock: currentStock,
-  images: ["/IMG_1878.jpg", "/IMG_1881.jpeg", "/IMG_1879.jpeg"],
+  images: ["/IMG_1878.jpg", "/IMG_1881.jpeg", "/IMG_1925.jpeg"],
   features: [
     "3D printed with premium filament",
     "RFID blocking technology",

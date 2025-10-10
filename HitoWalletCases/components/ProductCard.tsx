@@ -49,29 +49,22 @@ export default function ProductCard({ product }: ProductCardProps) {
             </ul>
           </div>
 
-          {/* Price and Stock */}
+          {/* Price */}
           <div className="pt-4 border-t border-gray-200">
-            <div className="flex justify-between items-center mb-4">
-              <div>
-                <div className="text-3xl font-bold text-gray-900">
-                  {formatPrice(product.price)}
-                </div>
-                <div className="text-sm text-gray-600">or {product.priceEth} ETH</div>
+            <div className="mb-4">
+              <div className="text-3xl font-bold text-gray-900">
+                {formatPrice(product.price)}
               </div>
-              <div className="text-right">
-                <div className="text-sm text-gray-600">Stock:</div>
-                <div className="text-2xl font-bold text-indigo-600">{currentStock}</div>
-              </div>
+              <div className="text-sm text-gray-600">or {product.priceEth} ETH</div>
             </div>
 
             {/* Buy Button */}
             <button
               onClick={() => setIsModalOpen(true)}
-              disabled={currentStock === 0}
-              className="w-full flex items-center justify-center space-x-2 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+              className="w-full flex items-center justify-center space-x-2 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl"
             >
               <ShoppingBag className="h-5 w-5" />
-              <span>{currentStock > 0 ? "Buy Now" : "Out of Stock"}</span>
+              <span>Buy Now</span>
             </button>
           </div>
         </div>
