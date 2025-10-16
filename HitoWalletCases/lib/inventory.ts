@@ -16,16 +16,18 @@ let currentStock = 30;
 
 export const product: Product = {
   id: "wallet-case-001",
-  name: "Premium Web3 Wallet Case",
-  description: "3D printed wallet case with RFID protection and minimalist design. Perfect for everyday carry with space for cards, cash, and essentials.",
-  price: 49.99,
-  priceEth: 0.025,
+  name: "Hardware Wallet + Premium Case Bundle",
+  description: "Complete crypto security solution: Secure hardware wallet paired with a custom 3D printed protective case. Keep your crypto safe with RFID protection and minimalist design.",
+  price: 200.00,
+  priceEth: 0.08,
   stock: currentStock,
   images: ["/IMG_1878.jpg", "/IMG_1881.jpeg", "/IMG_1925.jpeg"],
   features: [
-    "3D printed with premium filament",
+    "Secure hardware wallet included",
+    "Custom 3D printed protective case",
     "RFID blocking technology",
     "Slim, minimalist design",
+    "Complete crypto security solution",
     "Durable and long-lasting"
   ]
 };
