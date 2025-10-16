@@ -32,13 +32,13 @@ export default function ImageCarousel({ images, alt, priority = false }: ImageCa
   return (
     <div className="relative group">
       {/* Main Image */}
-      <div className="aspect-square rounded-2xl overflow-hidden bg-white">
+      <div className="aspect-square rounded-2xl overflow-hidden bg-white flex items-center justify-center">
         <Image
           src={images[currentIndex]}
           alt={`${alt} - Image ${currentIndex + 1}`}
           width={800}
           height={800}
-          className="w-full h-full object-cover"
+          className={`w-full h-full ${images[currentIndex].includes('IMG_1878') ? 'object-contain scale-90' : 'object-cover'}`}
           priority={priority}
         />
       </div>

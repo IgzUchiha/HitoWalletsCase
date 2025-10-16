@@ -15,11 +15,11 @@ export default function Hero() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                Premium Wallet Cases
-                <span className="block text-indigo-600">Crafted for You</span>
+                Psichedelic Labs
+                <span className="block text-indigo-600">Innovation Unlocked</span>
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Precision 3D printed wallet cases combining modern design with cutting-edge functionality. RFID protection meets minimalist design.
+                Building on-chain, 3D crafting the future, and pioneering AI wearable technology. Where blockchain meets physical innovation.
               </p>
             </div>
 
@@ -81,7 +81,7 @@ export default function Hero() {
       <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            Why Choose Web3Cases?
+            Why Choose Psichedelic Labs?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">

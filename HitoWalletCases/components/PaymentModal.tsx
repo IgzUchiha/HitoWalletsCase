@@ -10,6 +10,7 @@ interface PaymentModalProps {
   onClose: () => void;
   onPurchaseSuccess: () => void;
   product: {
+    id: string;
     name: string;
     price: number;
     priceEth: number;

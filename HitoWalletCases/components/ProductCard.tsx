@@ -17,7 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [currentStock, setCurrentStock] = useState(product.stock);
 
   const handlePurchaseSuccess = () => {
-    if (updateStock(1)) {
+    if (updateStock(1, product.id)) {
       setCurrentStock(prev => prev - 1);
     }
   };
@@ -76,6 +76,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         onClose={() => setIsModalOpen(false)}
         onPurchaseSuccess={handlePurchaseSuccess}
         product={{
+          id: product.id,
           name: product.name,
           price: product.price,
           priceEth: product.priceEth,
