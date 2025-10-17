@@ -7,18 +7,18 @@ import { product } from "@/lib/inventory";
 
 export default function Hero() {
   return (
-    <div className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+    <div className="relative bg-black">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 Psichedelic Labs
-                <span className="block text-indigo-600">Innovation Unlocked</span>
+                <span className="block text-green-500">Innovation Unlocked</span>
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-gray-300 leading-relaxed">
                 Building on-chain, 3D crafting the future, and pioneering AI wearable technology. Where blockchain meets physical innovation.
               </p>
             </div>
@@ -27,14 +27,14 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
               >
                 <ShoppingBag className="mr-2 h-5 w-5" />
                 Shop Now
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg border-2 border-indigo-600 hover:bg-indigo-50 transition-colors"
+                className="inline-flex items-center justify-center px-8 py-4 bg-black text-green-500 font-semibold rounded-lg border-2 border-green-600 hover:bg-green-900 transition-colors"
               >
                 Contact Us
               </Link>
@@ -43,16 +43,16 @@ export default function Hero() {
             {/* Stats */}
             <div className="pt-8 flex gap-12">
               <div>
-                <div className="text-3xl font-bold text-indigo-600">100%</div>
-                <div className="text-sm text-gray-600">Handcrafted</div>
+                <div className="text-3xl font-bold text-green-500">100%</div>
+                <div className="text-sm text-gray-400">Handcrafted</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-indigo-600">3D</div>
-                <div className="text-sm text-gray-600">Printed</div>
+                <div className="text-3xl font-bold text-green-500">3D</div>
+                <div className="text-sm text-gray-400">Printed</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-indigo-600">RFID</div>
-                <div className="text-sm text-gray-600">Protected</div>
+                <div className="text-3xl font-bold text-green-500">RFID</div>
+                <div className="text-sm text-gray-400">Protected</div>
               </div>
             </div>
           </div>
@@ -67,47 +67,47 @@ export default function Hero() {
               />
             </div>
             {/* Floating badges */}
-            <div className="absolute -top-4 -right-4 bg-white rounded-full p-4 shadow-lg">
-              <Shield className="h-8 w-8 text-green-600" />
+            <div className="absolute -top-4 -right-4 bg-green-600 rounded-full p-4 shadow-lg">
+              <Shield className="h-8 w-8 text-white" />
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-full p-4 shadow-lg">
-              <Award className="h-8 w-8 text-yellow-600" />
+            <div className="absolute -bottom-4 -left-4 bg-green-600 rounded-full p-4 shadow-lg">
+              <Award className="h-8 w-8 text-white" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="bg-white py-16">
+      <div className="bg-black py-16 border-t border-green-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+          <h2 className="text-3xl font-bold text-center mb-12 text-white">
             Why Choose Psichedelic Labs?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full">
-                <Shield className="h-8 w-8 text-indigo-600" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-900 rounded-full">
+                <Shield className="h-8 w-8 text-green-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">RFID Protection</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white">RFID Protection</h3>
+              <p className="text-gray-400">
                 Advanced RFID blocking technology keeps your cards safe from electronic theft.
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full">
-                <Sparkles className="h-8 w-8 text-indigo-600" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-900 rounded-full">
+                <Sparkles className="h-8 w-8 text-green-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Premium Materials</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white">Premium Materials</h3>
+              <p className="text-gray-400">
                 High-quality 3D printer filament crafted with precision for durability and modern style.
               </p>
             </div>
             <div className="text-center space-y-4">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full">
-                <Award className="h-8 w-8 text-indigo-600" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-900 rounded-full">
+                <Award className="h-8 w-8 text-green-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Precision Crafted</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white">Precision Crafted</h3>
+              <p className="text-gray-400">
                 Each case is precision 3D printed to ensure consistent quality and perfect fit.
               </p>
             </div>

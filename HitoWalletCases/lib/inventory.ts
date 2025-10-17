@@ -47,6 +47,7 @@ export const products: Product[] = [
     images: ["/wallet-case.jpg"], // TODO: Add iPhone case images
     features: [
       "Custom 3D printed design",
+      "Pick your color - mix and match",
       "Lightweight and durable",
       "Perfect fit for your iPhone",
       "Shock-absorbent material",

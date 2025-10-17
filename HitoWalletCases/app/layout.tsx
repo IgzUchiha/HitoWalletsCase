@@ -14,12 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className="antialiased min-h-screen flex flex-col bg-black">
         <Navbar />
         <main className="flex-1">{children}</main>
-        <footer className="bg-gray-900 text-white py-8">
+        <footer className="bg-black border-t border-green-900 text-white py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-gray-400">
+            <p className="text-green-400">
               © {new Date().getFullYear()} Psichedelic Labs. All rights reserved.
             </p>
           </div>
