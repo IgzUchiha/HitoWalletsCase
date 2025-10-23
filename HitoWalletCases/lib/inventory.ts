@@ -30,10 +30,11 @@ const stockInventory: { [key: string]: number } = {
   "wallet-bundle-001": 30,
   "iphone-case-001": 50,
   "ai-necklace-001": 25,
-  "rashguard-original-001": 50,
-  "rashguard-bred-001": 50,
-  "rashguard-joker-001": 50,
-  "rashguard-gothboi-001": 50,
+  "rashguard-original-001": 999999,
+  "rashguard-bred-001": 999999,
+  "rashguard-joker-001": 999999,
+  "rashguard-gothboi-001": 999999,
+  "rashguard-red-001": 999999,
 };
 
 export const products: Product[] = [
@@ -224,6 +225,46 @@ export const products: Product[] = [
       "Anti-chafe flatlock seams",
       "4-way stretch material",
       "Dark GothBoi colorway",
+      "Perfect for water sports & training",
+      "Breathable and lightweight"
+    ],
+    sizes: ["S", "M", "L", "XL", "XXL", "XXXL"],
+    customizations: [
+      {
+        id: "custom-flag",
+        name: "Custom Country Flag",
+        description: "Add your country's flag to your rash guard",
+        price: 20.00,
+        priceEth: 0.008,
+        inputType: "text",
+        placeholder: "Enter your country"
+      },
+      {
+        id: "instagram-handle",
+        name: "Instagram Handle",
+        description: "Add your Instagram handle to your rash guard",
+        price: 15.00,
+        priceEth: 0.006,
+        inputType: "text",
+        placeholder: "@yourhandle"
+      }
+    ],
+    category: "apparel"
+  },
+  {
+    id: "rashguard-red-001",
+    name: "PsichedelicLabs Rash Guard - Red Colorway",
+    description: "Bold red colorway rash guard for maximum impact. Premium performance fabric with striking red design. Make a powerful statement while you train.",
+    price: 59.99,
+    priceEth: 0.025,
+    stock: stockInventory["rashguard-red-001"],
+    images: ["/rashguard-red.PNG"],
+    features: [
+      "Premium quick-dry fabric",
+      "UV protection (UPF 50+)",
+      "Anti-chafe flatlock seams",
+      "4-way stretch material",
+      "Bold red colorway",
       "Perfect for water sports & training",
       "Breathable and lightweight"
     ],
