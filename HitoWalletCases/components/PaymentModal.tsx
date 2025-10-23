@@ -4,6 +4,12 @@ import { useState } from "react";
 import { X, CreditCard, Wallet, Loader2, CheckCircle, XCircle } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { ethers } from "ethers";
+import type { CustomizationOption } from "@/lib/inventory";
+
+interface SelectedCustomization {
+  option: CustomizationOption;
+  value: string;
+}
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -14,6 +20,8 @@ interface PaymentModalProps {
     name: string;
     price: number;
     priceEth: number;
+    selectedSize?: string | null;
+    customizations?: CustomizationOption[];
   };
 }
 
@@ -33,6 +41,7 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
   const [paymentMethod, setPaymentMethod] = useState<"stripe" | "metamask" | null>(null);
   const [status, setStatus] = useState<PaymentStatus>("idle");
   const [message, setMessage] = useState("");
+  const [selectedCustomizations, setSelectedCustomizations] = useState<SelectedCustomization[]>([]);
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
     name: "",
     email: "",
@@ -42,6 +51,38 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
     zip: "",
     country: "United States",
   });
+
+  // Calculate total price with customizations
+  const calculateTotalPrice = (useEth: boolean = false) => {
+    const basePrice = useEth ? product.priceEth : product.price;
+    const customizationTotal = selectedCustomizations.reduce((total, custom) => {
+      return total + (useEth ? custom.option.priceEth : custom.option.price);
+    }, 0);
+    return basePrice + customizationTotal;
+  };
+
+  const totalPrice = calculateTotalPrice(false);
+  const totalPriceEth = calculateTotalPrice(true);
+
+  const handleCustomizationToggle = (option: CustomizationOption, value: string) => {
+    const existingIndex = selectedCustomizations.findIndex(c => c.option.id === option.id);
+    
+    if (value) {
+      // Add or update customization
+      if (existingIndex >= 0) {
+        const updated = [...selectedCustomizations];
+        updated[existingIndex] = { option, value };
+        setSelectedCustomizations(updated);
+      } else {
+        setSelectedCustomizations([...selectedCustomizations, { option, value }]);
+      }
+    } else {
+      // Remove customization
+      if (existingIndex >= 0) {
+        setSelectedCustomizations(selectedCustomizations.filter((_, i) => i !== existingIndex));
+      }
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -69,7 +110,9 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
         },
         body: JSON.stringify({
           productName: product.name,
-          price: product.price,
+          price: totalPrice,
+          size: product.selectedSize,
+          customizations: selectedCustomizations,
         }),
       });
 
@@ -124,8 +167,10 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
         transactionHash: tx.hash,
         customerWallet: customerAddress,
         product: product.name,
-        price: product.priceEth,
-        priceUSD: product.price,
+        size: product.selectedSize,
+        customizations: selectedCustomizations,
+        price: totalPriceEth,
+        priceUSD: totalPrice,
         shipping: shippingInfo,
         timestamp: new Date().toISOString(),
       };
@@ -181,6 +226,7 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
       zip: "",
       country: "United States",
     });
+    setSelectedCustomizations([]);
     onClose();
   };
 
@@ -203,13 +249,60 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
         {/* Content */}
         <div className="p-6 space-y-6">
           {/* Product Info */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="bg-gray-50 rounded-lg p-4 space-y-2">
             <div className="text-sm text-gray-600">You are purchasing:</div>
-            <div className="text-lg font-semibold text-gray-900 mt-1">{product.name}</div>
+            <div className="text-lg font-semibold text-gray-900">{product.name}</div>
+            {product.selectedSize && (
+              <div className="text-sm text-gray-600">Size: <span className="font-medium text-gray-900">{product.selectedSize}</span></div>
+            )}
+            {selectedCustomizations.length > 0 && (
+              <div className="text-sm text-gray-600 space-y-1">
+                <div className="font-medium">Add-ons:</div>
+                {selectedCustomizations.map((custom, idx) => (
+                  <div key={idx} className="flex justify-between">
+                    <span>• {custom.option.name}: {custom.value}</span>
+                    <span className="font-medium">${custom.option.price}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {selectedCustomizations.length > 0 && (
+              <div className="pt-2 border-t border-gray-200">
+                <div className="flex justify-between font-semibold text-gray-900">
+                  <span>Total:</span>
+                  <span>${totalPrice.toFixed(2)}</span>
+                </div>
+              </div>
+            )}
           </div>
 
           {status === "idle" && (
             <>
+              {/* Customization Options */}
+              {product.customizations && product.customizations.length > 0 && (
+                <div className="space-y-4 border-t border-gray-200 pt-4">
+                  <h4 className="font-semibold text-gray-900">Customize Your Order (Optional)</h4>
+                  {product.customizations.map((option) => (
+                    <div key={option.id} className="space-y-2">
+                      <label className="block">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium text-gray-700">{option.name}</span>
+                          <span className="text-sm font-semibold text-gray-900">+${option.price}</span>
+                        </div>
+                        <p className="text-xs text-gray-500 mb-2">{option.description}</p>
+                        <input
+                          type="text"
+                          placeholder={option.placeholder}
+                          value={selectedCustomizations.find(c => c.option.id === option.id)?.value || ""}
+                          onChange={(e) => handleCustomizationToggle(option, e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                        />
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {/* Stripe Payment */}
               <button
                 onClick={() => {
@@ -229,7 +322,7 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-gray-900">${product.price}</div>
+                  <div className="font-bold text-gray-900">${totalPrice.toFixed(2)}</div>
                   <div className="text-xs text-gray-500">USD</div>
                 </div>
               </button>
@@ -253,8 +346,8 @@ export default function PaymentModal({ isOpen, onClose, onPurchaseSuccess, produ
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-gray-900">{product.priceEth} ETH</div>
-                  <div className="text-xs text-gray-500">~${product.price}</div>
+                  <div className="font-bold text-gray-900">{totalPriceEth.toFixed(4)} ETH</div>
+                  <div className="text-xs text-gray-500">~${totalPrice.toFixed(2)}</div>
                 </div>
               </button>
             </>

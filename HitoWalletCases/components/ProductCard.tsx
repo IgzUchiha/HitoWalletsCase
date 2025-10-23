@@ -15,11 +15,22 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStock, setCurrentStock] = useState(product.stock);
+  const [selectedSize, setSelectedSize] = useState<string | null>(
+    product.sizes ? product.sizes[0] : null
+  );
 
   const handlePurchaseSuccess = () => {
     if (updateStock(1, product.id)) {
       setCurrentStock(prev => prev - 1);
     }
+  };
+
+  const handleBuyNow = () => {
+    if (product.sizes && !selectedSize) {
+      alert("Please select a size");
+      return;
+    }
+    setIsModalOpen(true);
   };
 
   return (
@@ -49,6 +60,28 @@ export default function ProductCard({ product }: ProductCardProps) {
             </ul>
           </div>
 
+          {/* Size Selection */}
+          {product.sizes && (
+            <div className="space-y-2">
+              <h4 className="font-semibold text-green-500">Select Size:</h4>
+              <div className="flex flex-wrap gap-2">
+                {product.sizes.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                      selectedSize === size
+                        ? "bg-green-600 text-white border-2 border-green-600"
+                        : "bg-gray-800 text-gray-300 border-2 border-gray-700 hover:border-green-600"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Price */}
           <div className="pt-4 border-t border-green-900">
             <div className="mb-4">
@@ -60,7 +93,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             {/* Buy Button */}
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={handleBuyNow}
               className="w-full flex items-center justify-center space-x-2 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
             >
               <ShoppingBag className="h-5 w-5" />
@@ -80,6 +113,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           name: product.name,
           price: product.price,
           priceEth: product.priceEth,
+          selectedSize: selectedSize,
+          customizations: product.customizations,
         }}
       />
     </>
