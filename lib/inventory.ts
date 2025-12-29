@@ -34,9 +34,6 @@ export interface ProductAddon {
 
 // Stock tracking for each product
 const stockInventory: { [key: string]: number } = {
-  "wallet-bundle-001": 30,
-  "iphone-case-001": 50,
-
   "rashguard-original": 100,
   "rashguard-bred": 100,
   "rashguard-joker": 100,
@@ -69,42 +66,6 @@ const rashguardAddons: ProductAddon[] = [
 ];
 
 export const products: Product[] = [
-  {
-    id: "wallet-bundle-001",
-    name: "Hardware Wallet + Premium Case Bundle",
-    description: "Complete crypto security solution: Secure hardware wallet paired with a custom 3D printed protective case. Keep your crypto safe with RFID protection and minimalist design.",
-    price: 200.00,
-    priceEth: 0.08,
-    stock: stockInventory["wallet-bundle-001"],
-    images: ["/IMG_1878.jpg", "/IMG_1925.jpeg"],
-    features: [
-      "Secure hardware wallet included",
-      "Custom 3D printed protective case",
-      "RFID blocking technology",
-      "Slim, minimalist design",
-      "Complete crypto security solution",
-      "Durable and long-lasting"
-    ]
-  },
-  {
-    id: "iphone-case-001",
-    name: "Custom 3D Printed iPhone Case",
-    description: "Premium 3D printed iPhone case with unique design. Lightweight, durable, and perfectly fitted for your iPhone. Available for multiple iPhone models.",
-    price: 35.00,
-    priceEth: 0.015,
-    stock: stockInventory["iphone-case-001"],
-    images: ["/wallet-case.jpg"],
-    features: [
-      "Custom 3D printed design",
-      "Pick your color - mix and match",
-      "Lightweight and durable",
-      "Perfect fit for your iPhone",
-      "Shock-absorbent material",
-      "Easy snap-on installation",
-      "Unique aesthetic design"
-    ]
-  },
-
   {
     id: "rashguard-original",
     name: "PsichedelicLabs Original Rash Guard",
@@ -215,7 +176,7 @@ export const products: Product[] = [
   }
 ];
 
-// Backwards compatibility - default to first product (wallet bundle)
+// Backwards compatibility - default to first product (rashguard original)
 export const product: Product = products[0];
 
 export function getProducts(): Product[] {
