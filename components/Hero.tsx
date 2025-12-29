@@ -6,10 +6,10 @@ import { ShoppingBag, Lock, Send, Wallet, TrendingUp, ChevronRight } from "lucid
 
 export default function Hero() {
   const appScreenshots = [
-    { src: "/app-home.png", alt: "PSI Wallet Home Screen", label: "Home" },
-    { src: "/app-send.png", alt: "Send Payment Screen", label: "Send" },
-    { src: "/app-send-keyboard.png", alt: "Send Payment with Address", label: "Pay" },
-    { src: "/app-activity.png", alt: "Activity Screen", label: "Activity" },
+    { src: "/app-home.PNG", alt: "PSI Wallet Home Screen", label: "Home" },
+    { src: "/app-send.PNG", alt: "Send Payment Screen", label: "Send" },
+    { src: "/app-send-keyboard.PNG", alt: "Send Payment with Address", label: "Pay" },
+    { src: "/app-activity.PNG", alt: "Activity Screen", label: "Activity" },
   ];
 
   return (
